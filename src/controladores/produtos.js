@@ -214,6 +214,37 @@ const atualizarImagemProduto = async (req, res) => {
   }
 };
 
+const excluirImagemProduto = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const produtoEncontrado = await knex("produtos")
+      .where({
+        id,
+        usuario_id: req.usuario.id,
+      })
+      .first();
+
+    if (!produtoEncontrado) {
+      return res.status(404).json("Produto não encontrado");
+    }
+
+    await excluirImagem(produtoEncontrado.imagem);
+
+    const produto = await knex("produtos").where({ id }).update({
+      imagem: null,
+    });
+
+    if (!produto) {
+      return res.status(400).json("O produto não foi atualizado");
+    }
+
+    return res.status(204).send();
+  } catch (error) {
+    return res.status(400).json(error.message);
+  }
+};
+
 module.exports = {
   listarProdutos,
   obterProduto,
@@ -221,4 +252,5 @@ module.exports = {
   atualizarProduto,
   excluirProduto,
   atualizarImagemProduto,
+  excluirImagemProduto,
 };

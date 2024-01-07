@@ -26,7 +26,7 @@ rotas.get("/produtos/:id", produtos.obterProduto);
 rotas.post("/produtos", multer.single("imagem"), produtos.cadastrarProduto);
 rotas.put("/produtos/:id", produtos.atualizarProduto);
 rotas.delete("/produtos/:id", produtos.excluirProduto);
-rotas.delete("/produtos/:id/imagem", produtos.excluirProduto);
+rotas.delete("/produtos/:id/imagem", produtos.excluirImagemProduto);
 rotas.patch(
   "/produtos/:id/imagem",
   multer.single("imagem"),
