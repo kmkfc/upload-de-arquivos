@@ -1,7 +1,7 @@
 
 ![](https://i.imgur.com/xG74tOh.png)
 
-# Exercício resolvido no curso de desenvolvedor back end da Cubos
+# Exercício de desenvolvedor back end da Cubos
 
 ## Upload de imagens
 
